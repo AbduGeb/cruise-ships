@@ -1,9 +1,9 @@
 const Port = require("../src/Port.js");
 const Ship = require("../src/Ship.js");
 
-describe("port", () => {
+describe("Port", () => {
 
-    it("port can be instantiated", () => {
+    it("can be instantiated", () => {
         expect(new Port()).toBeInstanceOf(Object);
     });
 
