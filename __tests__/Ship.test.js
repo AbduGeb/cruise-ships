@@ -77,18 +77,32 @@ describe("setSail", () => {
 describe("dock", () => {
     
     it("can dock at a different port", () => {
-        const dover = new Port("Dover");
-        const calais = new Port("Calais")
-        const itinerary = new Itinerary([dover, calais])
+        dover = {
+            addShip: jest.fn(),
+            removeShip: jest.fn(),
+            name : "Dover",
+            ships: []
+        };
+
+        calais = {
+            addShip: jest.fn(),
+            removeShip: jest.fn(),
+            name: "Calais",
+            ships: []
+        };
+
+        itinerary = {
+            ports: [dover, calais]
+        };
+
         const ship = new Ship(itinerary);
 
         ship.setSail();
         ship.dock();
 
         expect(ship.currentPort).toBe(calais);
-        expect(calais.ships).toContain(ship);
-        // didn't know how to isolate with spy : "expect(calais.addShip).toHaveBeenCalledWith(ship);"
-    });
+        expect(calais.addShip).toHaveBeenCalledWith(ship);
+        });
 
 
 });
